@@ -17,8 +17,18 @@ table {
   }
 
   tbody {
+    cursor: pointer;
     tr:nth-child(even) {
       background-color: #eee;
+    }
+
+    tr:hover {
+      background-color: #ddd;
+    }
+
+    .qty,
+    .price {
+      text-align: right;
     }
   }
 }
