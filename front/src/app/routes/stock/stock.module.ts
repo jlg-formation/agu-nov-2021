@@ -5,17 +5,15 @@ import { StockRoutingModule } from './stock-routing.module';
 import { StockComponent } from './stock.component';
 import { AddComponent } from './add/add.component';
 import { WidgetsModule } from '../../widgets/widgets.module';
-
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
-  declarations: [
-    StockComponent,
-    AddComponent
-  ],
+  declarations: [StockComponent, AddComponent],
   imports: [
     CommonModule,
     StockRoutingModule,
-    WidgetsModule
-  ]
+    WidgetsModule,
+    ReactiveFormsModule,
+  ],
 })
-export class StockModule { }
+export class StockModule {}
