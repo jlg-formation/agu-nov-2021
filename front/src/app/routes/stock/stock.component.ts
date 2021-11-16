@@ -1,3 +1,4 @@
+import { Article } from 'src/app/interfaces/article';
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from './../../services/article.service';
 
@@ -7,7 +8,17 @@ import { ArticleService } from './../../services/article.service';
   styleUrls: ['./stock.component.scss'],
 })
 export class StockComponent implements OnInit {
+  selectedArticles = new Set<Article>();
   constructor(public articleService: ArticleService) {}
 
   ngOnInit(): void {}
+
+  toggle(a: Article) {
+    console.log('a: ', a);
+    if (this.selectedArticles.has(a)) {
+      this.selectedArticles.delete(a);
+      return;
+    }
+    this.selectedArticles.add(a);
+  }
 }
