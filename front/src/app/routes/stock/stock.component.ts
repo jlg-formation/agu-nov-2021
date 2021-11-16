@@ -8,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StockComponent implements OnInit {
   articles: Article[] = [
-    { name: 'Tournevis', price: 2.4, qty: 123 },
+    { name: 'Tournevis cruciforme', price: 2.4, qty: 123 },
     { name: 'Pince', price: 5, qty: 68 },
     { name: 'Marteau', price: 8.54, qty: 5 },
   ];
