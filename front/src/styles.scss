@@ -4,3 +4,48 @@
 body {
   font-family: sans-serif;
 }
+
+main {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  gap: 0.5em;
+}
+
+button {
+  padding: 0.5em 1em;
+  background-color: #eee;
+  border: 0.1em solid #eee;
+  color: gray;
+
+  &:not(:disabled) {
+    cursor: pointer;
+    color: inherit;
+
+    &:hover {
+      background-color: #ddd;
+      border-color: #ddd;
+    }
+
+    &:active {
+      background-color: #ccc;
+      border-color: #ccc;
+    }
+
+    &.primary {
+      background-color: #333;
+      border-color: #333;
+      color: white;
+
+      &:hover {
+        background-color: #444;
+        border-color: #444;
+      }
+
+      &:active {
+        background-color: #555;
+        border-color: #555;
+      }
+    }
+  }
+}
