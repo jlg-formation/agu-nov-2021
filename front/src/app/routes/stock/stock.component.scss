@@ -18,12 +18,17 @@ table {
 
   tbody {
     cursor: pointer;
+
     tr:nth-child(even) {
       background-color: #eee;
     }
 
     tr:hover {
       background-color: #ddd;
+    }
+
+    tr.selected {
+      background-color: #ccc;
     }
 
     .qty,
