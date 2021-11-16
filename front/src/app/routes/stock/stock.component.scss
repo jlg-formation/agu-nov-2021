@@ -1,0 +1,24 @@
+nav {
+  display: flex;
+  gap: 0.3em;
+  margin-bottom: 2em;
+}
+
+table {
+  border: 0.1em solid #bbb;
+  border-collapse: collapse;
+  th,
+  td {
+    padding: 0.5em 1em;
+  }
+
+  thead {
+    background-color: #bbb;
+  }
+
+  tbody {
+    tr:nth-child(even) {
+      background-color: #eee;
+    }
+  }
+}
