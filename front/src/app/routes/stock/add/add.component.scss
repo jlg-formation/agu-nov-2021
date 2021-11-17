@@ -5,10 +5,25 @@ form {
   width: 100%;
   max-width: 25em;
 
-  input {
-    border: 0.1em solid #ccc;
-    padding: 0.5em 1em;
-    width: 100%;
+  label {
+    input {
+      border: 0.1em solid #ccc;
+      padding: 0.5em 1em;
+      width: 100%;
+    }
+
+    ul {
+      display: flex;
+      flex-flow: column;
+      overflow: hidden;
+      height: 1em;
+      margin: 0;
+      padding: 0;
+      font-weight: bold;
+      li {
+        display: flex;
+      }
+    }
   }
 
   button {

@@ -15,8 +15,12 @@ export class AddComponent implements OnInit {
   faCircleNotch = faCircleNotch;
   isAdding = false;
   f = new FormGroup({
-    name: new FormControl('Tournevis', [Validators.required]),
-    price: new FormControl(1.23, [Validators.required]),
+    name: new FormControl('Tournevis', [
+      Validators.required,
+      Validators.minLength(4),
+      Validators.maxLength(15),
+    ]),
+    price: new FormControl(1.23, [Validators.required, Validators.max(1000)]),
     qty: new FormControl(1, [Validators.required]),
   });
 

@@ -4,6 +4,19 @@
     <label>
       <div>Nom</div>
       <input type="text" formControlName="name" appAutofocus />
+      <ul>
+        <li *ngIf="f.controls['name'].errors?.['required']">
+          Le champ est requis.
+        </li>
+        <li *ngIf="f.controls['name'].errors?.['minlength']">
+          Le nom doit contenir au moins
+          {{ f.controls["name"].errors?.["minlength"].requiredLength }}
+          caractères.
+        </li>
+        <li *ngIf="f.controls['name'].errors?.['maxlength']">
+          Le nom doit contenir maxi 15 caractères.
+        </li>
+      </ul>
     </label>
     <label>
       <div>Prix</div>
