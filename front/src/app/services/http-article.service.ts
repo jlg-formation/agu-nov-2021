@@ -27,4 +27,21 @@ export class HttpArticleService extends ArticleService {
       },
     });
   }
+
+  override add(article: Article) {
+    super.add(article);
+    this.http
+      .post<void>('http://localhost:3000/api/articles', article)
+      .subscribe({
+        next: () => {
+          this.refresh();
+        },
+        error: (err) => {
+          console.log('err: ', err);
+        },
+        complete: () => {
+          console.log('complete');
+        },
+      });
+  }
 }
