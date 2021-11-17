@@ -4,7 +4,10 @@ import { Pipe, PipeTransform } from '@angular/core';
   name: 'ellipsis',
 })
 export class EllipsisPipe implements PipeTransform {
-  transform(value: string, maxLength = 10): string {
+  transform(value: unknown, maxLength = 10): string {
+    if (typeof value !== 'string') {
+      return '';
+    }
     if (value.length > maxLength) {
       return value.substr(0, maxLength) + '...';
     }
