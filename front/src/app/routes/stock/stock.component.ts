@@ -9,9 +9,16 @@ import { ArticleService } from './../../services/article.service';
 })
 export class StockComponent implements OnInit {
   selectedArticles = new Set<Article>();
+
   constructor(public articleService: ArticleService) {}
 
   ngOnInit(): void {}
+
+  removeArticles() {
+    console.log('removeArticles');
+    this.articleService.remove(this.selectedArticles);
+    this.selectedArticles.clear();
+  }
 
   toggle(a: Article) {
     if (this.selectedArticles.has(a)) {
@@ -19,11 +26,5 @@ export class StockComponent implements OnInit {
       return;
     }
     this.selectedArticles.add(a);
-  }
-
-  removeArticles() {
-    console.log('removeArticles');
-    this.articleService.remove(this.selectedArticles);
-    this.selectedArticles.clear();
   }
 }

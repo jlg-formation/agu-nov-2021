@@ -9,12 +9,13 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './layout/layout.module';
 import { HomeComponent } from './routes/home/home.component';
 import { LegalComponent } from './routes/legal/legal.component';
+import { HttpClientModule } from '@angular/common/http';
 
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
   declarations: [AppComponent, HomeComponent, LegalComponent],
-  imports: [BrowserModule, AppRoutingModule, LayoutModule],
+  imports: [BrowserModule, AppRoutingModule, LayoutModule, HttpClientModule],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
