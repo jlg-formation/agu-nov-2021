@@ -1,6 +1,7 @@
 import { Article } from 'src/app/interfaces/article';
 import { Component, OnInit } from '@angular/core';
 import { ArticleService } from './../../services/article.service';
+import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-stock',
@@ -8,6 +9,8 @@ import { ArticleService } from './../../services/article.service';
   styleUrls: ['./stock.component.scss'],
 })
 export class StockComponent implements OnInit {
+  faPlus = faPlus;
+  faTrashAlt = faTrashAlt;
   selectedArticles = new Set<Article>();
 
   constructor(public articleService: ArticleService) {}
