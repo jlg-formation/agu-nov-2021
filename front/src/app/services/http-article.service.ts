@@ -1,3 +1,4 @@
+import { Article } from './../interfaces/article';
 import { ArticleService } from './article.service';
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
@@ -13,6 +14,17 @@ export class HttpArticleService extends ArticleService {
   }
 
   refresh() {
-    this.http.get('http://localhost:3000/api/articles');
+    this.http.get<Article[]>('http://localhost:3000/api/articles').subscribe({
+      next: (articles) => {
+        console.log('articles: ', articles);
+        this.articles = articles;
+      },
+      error: (err) => {
+        console.log('err: ', err);
+      },
+      complete: () => {
+        console.log('complete');
+      },
+    });
   }
 }
