@@ -14,11 +14,16 @@ export class StockComponent implements OnInit {
   ngOnInit(): void {}
 
   toggle(a: Article) {
-    console.log('a: ', a);
     if (this.selectedArticles.has(a)) {
       this.selectedArticles.delete(a);
       return;
     }
     this.selectedArticles.add(a);
+  }
+
+  removeArticles() {
+    console.log('removeArticles');
+    this.articleService.remove(this.selectedArticles);
+    this.selectedArticles.clear();
   }
 }

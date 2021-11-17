@@ -9,6 +9,11 @@ export class ArticleService {
 
   constructor() {}
 
+  add(article: Article) {
+    this.articles.push(article);
+    this.save();
+  }
+
   getArticles() {
     const str = localStorage.getItem('articles');
     if (!str) {
@@ -21,12 +26,12 @@ export class ArticleService {
     return JSON.parse(str) as Article[];
   }
 
-  save() {
-    localStorage.setItem('articles', JSON.stringify(this.articles));
+  remove(selectedArticles: Set<Article>) {
+    this.articles = this.articles.filter((a) => !selectedArticles.has(a));
+    this.save();
   }
 
-  add(article: Article) {
-    this.articles.push(article);
-    this.save();
+  save() {
+    localStorage.setItem('articles', JSON.stringify(this.articles));
   }
 }
