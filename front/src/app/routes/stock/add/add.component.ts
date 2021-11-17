@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Article } from 'src/app/interfaces/article';
+import { faPlus, faCircleNotch } from '@fortawesome/free-solid-svg-icons';
 
 @Component({
   selector: 'app-add',
@@ -10,6 +11,9 @@ import { Article } from 'src/app/interfaces/article';
   styleUrls: ['./add.component.scss'],
 })
 export class AddComponent implements OnInit {
+  faPlus = faPlus;
+  faCircleNotch = faCircleNotch;
+  isAdding = false;
   f = new FormGroup({
     name: new FormControl('Tournevis', [Validators.required]),
     price: new FormControl(1.23, [Validators.required]),

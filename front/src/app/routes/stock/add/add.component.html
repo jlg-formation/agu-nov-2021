@@ -13,7 +13,13 @@
       <div>Quantité</div>
       <input type="number" formControlName="qty" />
     </label>
-    <button [disabled]="f.invalid" class="primary">Ajouter</button>
+    <button [disabled]="f.invalid" class="primary">
+      <fa-icon
+        [icon]="isAdding ? faCircleNotch : faPlus"
+        [spin]="isAdding"
+      ></fa-icon>
+      Ajouter
+    </button>
   </form>
   <!-- {{ f.value | json }} -->
 </main>
