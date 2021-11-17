@@ -1,3 +1,12 @@
+main {
+  div {
+    display: flex;
+    flex-flow: column;
+    width: 100%;
+    max-width: 25em;
+  }
+}
+
 nav {
   display: flex;
   gap: 0.3em;
@@ -7,6 +16,7 @@ nav {
 table {
   border: 0.1em solid #bbb;
   border-collapse: collapse;
+  width: 100%;
   th,
   td {
     padding: 0.5em 1em;

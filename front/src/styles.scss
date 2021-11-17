@@ -63,3 +63,23 @@ button {
 h1 {
   text-align: center;
 }
+
+.skeleton {
+  animation: skeleton 2s ease-in-out 0s infinite;
+  background-clip: content-box;
+}
+
+@keyframes skeleton {
+  from {
+    background-color: #ddd;
+    color: #ddd;
+  }
+  50% {
+    background-color: #ccc;
+    color: #ccc;
+  }
+  to {
+    background-color: #ddd;
+    color: #ddd;
+  }
+}

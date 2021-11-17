@@ -13,7 +13,22 @@
         <fa-icon [icon]="faTrashAlt"></fa-icon>
       </button>
     </nav>
-    <div [hidden]="!isLoading">Loading...</div>
+    <table [hidden]="!isLoading">
+      <thead>
+        <tr>
+          <th class="name">Nom</th>
+          <th class="price">Prix</th>
+          <th class="qty">Quantité</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let a of [1, 2, 3]">
+          <td class="name skeleton">x</td>
+          <td class="price skeleton">x</td>
+          <td class="qty skeleton">x</td>
+        </tr>
+      </tbody>
+    </table>
     <table [hidden]="isLoading">
       <thead>
         <tr>
