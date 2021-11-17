@@ -30,7 +30,17 @@ export class AddComponent implements OnInit {
 
   submit() {
     console.log('submit');
-    this.articleService.add(this.f.value as Article);
-    this.router.navigate(['..'], { relativeTo: this.route });
+    this.isAdding = true;
+    this.articleService.add(this.f.value as Article).subscribe({
+      next: () => {
+        console.log('added success');
+        this.isAdding = false;
+        this.router.navigate(['..'], { relativeTo: this.route });
+      },
+      error: (err) => {
+        console.log('err: ', err);
+        this.isAdding = false;
+      },
+    });
   }
 }

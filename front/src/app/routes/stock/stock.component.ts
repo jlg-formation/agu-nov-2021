@@ -13,9 +13,23 @@ export class StockComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   selectedArticles = new Set<Article>();
 
+  isLoading = false;
+
   constructor(public articleService: ArticleService) {}
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    this.isLoading = true;
+    this.articleService.refresh().subscribe({
+      next: (articles) => {
+        this.articleService.articles = articles;
+        this.isLoading = false;
+      },
+      error: (err) => {
+        console.log('err: ', err);
+        this.isLoading = false;
+      },
+    });
+  }
 
   removeArticles() {
     console.log('removeArticles');

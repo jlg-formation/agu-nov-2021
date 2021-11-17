@@ -1,3 +1,4 @@
+import { Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Article } from '../interfaces/article';
 
@@ -5,13 +6,18 @@ import { Article } from '../interfaces/article';
   providedIn: 'root',
 })
 export class ArticleService {
-  articles: Article[] = this.getArticles();
+  articles: Article[] = [];
 
   constructor() {}
 
-  add(article: Article) {
+  refresh(): Observable<Article[]> {
+    return of(this.getArticles());
+  }
+
+  add(article: Article): Observable<void> {
     this.articles.push(article);
     this.save();
+    return of();
   }
 
   getArticles() {

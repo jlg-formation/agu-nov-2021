@@ -13,7 +13,8 @@
         <fa-icon [icon]="faTrashAlt"></fa-icon>
       </button>
     </nav>
-    <table>
+    <div [hidden]="!isLoading">Loading...</div>
+    <table [hidden]="isLoading">
       <thead>
         <tr>
           <th class="name">Nom</th>

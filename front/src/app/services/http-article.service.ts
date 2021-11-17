@@ -2,6 +2,8 @@ import { Article } from './../interfaces/article';
 import { ArticleService } from './article.service';
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { delay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,40 +12,19 @@ export class HttpArticleService extends ArticleService {
   constructor(private http: HttpClient) {
     super();
     console.log('http article');
-    this.refresh();
   }
 
-  refresh() {
-    this.http.get<Article[]>('http://localhost:3000/api/articles').subscribe({
-      next: (articles) => {
-        console.log('articles: ', articles);
-        this.articles = articles;
-        this.save();
-      },
-      error: (err) => {
-        console.log('err: ', err);
-      },
-      complete: () => {
-        console.log('complete');
-      },
-    });
+  override refresh(): Observable<Article[]> {
+    return this.http
+      .get<Article[]>('http://localhost:3000/api/articles')
+      .pipe(delay(2000));
   }
 
   override add(article: Article) {
     super.add(article);
-    this.http
+    return this.http
       .post<void>('http://localhost:3000/api/articles', article)
-      .subscribe({
-        next: () => {
-          this.refresh();
-        },
-        error: (err) => {
-          console.log('err: ', err);
-        },
-        complete: () => {
-          console.log('complete');
-        },
-      });
+      .pipe(delay(2000));
   }
 
   override remove(selectedArticles: Set<Article>) {
