@@ -1,7 +1,7 @@
 import { Article } from './../interfaces/article';
 import { ArticleService } from './article.service';
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root',
@@ -18,6 +18,7 @@ export class HttpArticleService extends ArticleService {
       next: (articles) => {
         console.log('articles: ', articles);
         this.articles = articles;
+        this.save();
       },
       error: (err) => {
         console.log('err: ', err);
@@ -32,6 +33,29 @@ export class HttpArticleService extends ArticleService {
     super.add(article);
     this.http
       .post<void>('http://localhost:3000/api/articles', article)
+      .subscribe({
+        next: () => {
+          this.refresh();
+        },
+        error: (err) => {
+          console.log('err: ', err);
+        },
+        complete: () => {
+          console.log('complete');
+        },
+      });
+  }
+
+  override remove(selectedArticles: Set<Article>) {
+    super.remove(selectedArticles);
+    const ids = [...selectedArticles].map((a) => a.id);
+    this.http
+      .delete<void>('http://localhost:3000/api/articles', {
+        headers: new HttpHeaders({
+          'Content-Type': 'application/json',
+        }),
+        body: JSON.stringify(ids),
+      })
       .subscribe({
         next: () => {
           this.refresh();
