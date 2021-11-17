@@ -28,9 +28,10 @@ export class ArticleService {
     return JSON.parse(str) as Article[];
   }
 
-  remove(selectedArticles: Set<Article>) {
+  remove(selectedArticles: Set<Article>): Observable<void> {
     this.articles = this.articles.filter((a) => !selectedArticles.has(a));
     this.save();
+    return of();
   }
 
   save() {

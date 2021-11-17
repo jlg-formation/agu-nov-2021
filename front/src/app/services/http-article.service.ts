@@ -27,26 +27,16 @@ export class HttpArticleService extends ArticleService {
       .pipe(delay(2000));
   }
 
-  override remove(selectedArticles: Set<Article>) {
+  override remove(selectedArticles: Set<Article>): Observable<void> {
     super.remove(selectedArticles);
     const ids = [...selectedArticles].map((a) => a.id);
-    this.http
+    return this.http
       .delete<void>('http://localhost:3000/api/articles', {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),
         body: JSON.stringify(ids),
       })
-      .subscribe({
-        next: () => {
-          this.refresh();
-        },
-        error: (err) => {
-          console.log('err: ', err);
-        },
-        complete: () => {
-          console.log('complete');
-        },
-      });
+      .pipe(delay(2000));
   }
 }

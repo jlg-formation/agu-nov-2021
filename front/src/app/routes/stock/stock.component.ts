@@ -18,6 +18,10 @@ export class StockComponent implements OnInit {
   constructor(public articleService: ArticleService) {}
 
   ngOnInit(): void {
+    this.refresh();
+  }
+
+  refresh() {
     this.isLoading = true;
     this.articleService.refresh().subscribe({
       next: (articles) => {
@@ -33,7 +37,16 @@ export class StockComponent implements OnInit {
 
   removeArticles() {
     console.log('removeArticles');
-    this.articleService.remove(this.selectedArticles);
+    this.articleService.remove(new Set(this.selectedArticles)).subscribe({
+      next: () => {
+        console.log('remove done.');
+        this.articleService.refresh().subscribe({
+          next: (articles) => {
+            this.articleService.articles = articles;
+          },
+        });
+      },
+    });
     this.selectedArticles.clear();
   }
 
