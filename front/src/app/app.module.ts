@@ -1,3 +1,5 @@
+import { HttpArticleService } from './services/http-article.service';
+import { ArticleService } from './services/article.service';
 import { registerLocaleData } from '@angular/common';
 import localeFr from '@angular/common/locales/fr';
 import { DEFAULT_CURRENCY_CODE, LOCALE_ID, NgModule } from '@angular/core';
@@ -16,6 +18,7 @@ registerLocaleData(localeFr, 'fr');
   providers: [
     { provide: LOCALE_ID, useValue: 'fr' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
+    { provide: ArticleService, useClass: HttpArticleService },
   ],
   bootstrap: [AppComponent],
 })
