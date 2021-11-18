@@ -10,18 +10,24 @@ form {
       border: 0.1em solid #ccc;
       padding: 0.5em 1em;
       width: 100%;
+      &.ng-invalid.ng-touched {
+        background-color: #eee;
+      }
     }
 
-    ul {
-      display: flex;
-      flex-flow: column;
+    div {
+      height: 1.1em;
       overflow: hidden;
-      height: 1em;
-      margin: 0;
-      padding: 0;
-      font-weight: bold;
-      li {
+      ul {
         display: flex;
+        flex-flow: column;
+
+        margin: 0;
+        padding: 0;
+        font-weight: bold;
+        li {
+          display: flex;
+        }
       }
     }
   }
