@@ -28,4 +28,10 @@ describe('EllipsisPipe', () => {
     const result = pipe.transform(string, 15);
     expect(result).toBe(string.substr(0, 15));
   });
+
+  it('should return empty string if not string', () => {
+    const pipe = new EllipsisPipe();
+
+    expect(pipe.transform(0)).toBe('');
+  });
 });
