@@ -24,6 +24,7 @@ export class StockComponent implements OnInit {
     this.articleService.refresh().subscribe({
       error: (err) => {
         console.log('err: ', err);
+        this.articleService.articles$.next([]);
       },
     });
   }
