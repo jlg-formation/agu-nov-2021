@@ -6,7 +6,7 @@ import { Article } from '../interfaces/article';
   providedIn: 'root',
 })
 export class ArticleService {
-  articles$ = new BehaviorSubject<Article[]>([]);
+  articles$ = new BehaviorSubject<Article[] | undefined>(undefined);
 
   constructor() {
     this.articles$.subscribe((articles) => {
@@ -19,7 +19,7 @@ export class ArticleService {
   }
 
   add(article: Article): Observable<void> {
-    this.articles$.value.push(article);
+    this.articles$.value?.push(article);
     this.articles$.next(this.articles$.value);
     return of();
   }
@@ -33,7 +33,7 @@ export class ArticleService {
   }
 
   remove(selectedArticles: Set<Article>): Observable<void> {
-    const articles = this.articles$.value.filter(
+    const articles = this.articles$.value?.filter(
       (a) => !selectedArticles.has(a)
     );
     this.articles$.next(articles);

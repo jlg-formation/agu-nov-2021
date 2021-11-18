@@ -13,7 +13,7 @@
         <fa-icon [icon]="faTrashAlt"></fa-icon>
       </button>
     </nav>
-    <table [hidden]="!isLoading">
+    <table [hidden]="articleService.articles$ | async">
       <thead>
         <tr>
           <th class="name">Nom</th>
@@ -29,7 +29,7 @@
         </tr>
       </tbody>
     </table>
-    <table [hidden]="isLoading">
+    <table [hidden]="!(articleService.articles$ | async)">
       <thead>
         <tr>
           <th class="name">Nom</th>

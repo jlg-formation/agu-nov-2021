@@ -14,8 +14,6 @@ export class StockComponent implements OnInit {
   faTrashAlt = faTrashAlt;
   selectedArticles = new Set<Article>();
 
-  isLoading = false;
-
   constructor(public articleService: ArticleService) {}
 
   ngOnInit(): void {
@@ -23,14 +21,9 @@ export class StockComponent implements OnInit {
   }
 
   refresh() {
-    this.isLoading = true;
     this.articleService.refresh().subscribe({
-      next: (articles) => {
-        this.isLoading = false;
-      },
       error: (err) => {
         console.log('err: ', err);
-        this.isLoading = false;
       },
     });
   }
