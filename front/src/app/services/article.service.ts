@@ -24,7 +24,7 @@ export class ArticleService {
   add(article: Article): Observable<void> {
     this.articles$.value?.push(article);
     this.articles$.next(this.articles$.value);
-    return of();
+    return of(undefined);
   }
 
   getArticles() {
