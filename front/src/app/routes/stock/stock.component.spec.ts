@@ -1,8 +1,8 @@
-import { ArticleService } from './../../services/article.service';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
-import { StockComponent } from './stock.component';
 import { throwError } from 'rxjs';
+import { a1 } from 'src/test/a1';
+import { ArticleService } from './../../services/article.service';
+import { StockComponent } from './stock.component';
 
 describe('StockComponent', () => {
   let component: StockComponent;
@@ -41,6 +41,18 @@ describe('StockComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     component.removeArticles();
+    expect(component).toBeTruthy();
+  });
+
+  it('should call toggle', async () => {
+    await TestBed.configureTestingModule({
+      declarations: [StockComponent],
+    }).compileComponents();
+    fixture = TestBed.createComponent(StockComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+    component.toggle(a1);
+    component.toggle(a1);
     expect(component).toBeTruthy();
   });
 });

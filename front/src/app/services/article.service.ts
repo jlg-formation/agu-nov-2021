@@ -42,12 +42,10 @@ export class ArticleService {
   }
 
   remove(selectedArticles: Set<Article>): Observable<void> {
-    console.log('start remove');
     const articles = this.articles$.value?.filter(
       (a) => !selectedArticles.has(a)
     );
     this.articles$.next(articles);
-    console.log('about to return of');
     return of(undefined);
   }
 }
