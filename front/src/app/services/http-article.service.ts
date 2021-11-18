@@ -24,7 +24,7 @@ export class HttpArticleService extends ArticleService {
 
   override add(article: Article) {
     super.add(article);
-    return this.http.post<void>(url, article).pipe(delay(2000));
+    return this.http.post<void>(url, article).pipe(delay(200));
   }
 
   override remove(selectedArticles: Set<Article>): Observable<void> {
@@ -37,6 +37,6 @@ export class HttpArticleService extends ArticleService {
         }),
         body: JSON.stringify(ids),
       })
-      .pipe(delay(2000));
+      .pipe(delay(200));
   }
 }
