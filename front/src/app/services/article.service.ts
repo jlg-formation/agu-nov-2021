@@ -1,4 +1,4 @@
-import { Observable, of } from 'rxjs';
+import { BehaviorSubject, Observable, of } from 'rxjs';
 import { Injectable } from '@angular/core';
 import { Article } from '../interfaces/article';
 
@@ -6,17 +6,21 @@ import { Article } from '../interfaces/article';
   providedIn: 'root',
 })
 export class ArticleService {
-  articles: Article[] = [];
+  articles$ = new BehaviorSubject<Article[]>([]);
 
-  constructor() {}
+  constructor() {
+    this.articles$.subscribe((articles) => {
+      localStorage.setItem('articles', JSON.stringify(articles));
+    });
+  }
 
   refresh(): Observable<Article[]> {
     return of(this.getArticles());
   }
 
   add(article: Article): Observable<void> {
-    this.articles.push(article);
-    this.save();
+    this.articles$.value.push(article);
+    this.articles$.next(this.articles$.value);
     return of();
   }
 
@@ -29,12 +33,10 @@ export class ArticleService {
   }
 
   remove(selectedArticles: Set<Article>): Observable<void> {
-    this.articles = this.articles.filter((a) => !selectedArticles.has(a));
-    this.save();
+    const articles = this.articles$.value.filter(
+      (a) => !selectedArticles.has(a)
+    );
+    this.articles$.next(articles);
     return of();
-  }
-
-  save() {
-    localStorage.setItem('articles', JSON.stringify(this.articles));
   }
 }

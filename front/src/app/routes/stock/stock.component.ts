@@ -1,5 +1,5 @@
 import { Article } from 'src/app/interfaces/article';
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ArticleService } from './../../services/article.service';
 import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
 
@@ -7,6 +7,7 @@ import { faPlus, faTrashAlt } from '@fortawesome/free-solid-svg-icons';
   selector: 'app-stock',
   templateUrl: './stock.component.html',
   styleUrls: ['./stock.component.scss'],
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StockComponent implements OnInit {
   faPlus = faPlus;
@@ -25,7 +26,6 @@ export class StockComponent implements OnInit {
     this.isLoading = true;
     this.articleService.refresh().subscribe({
       next: (articles) => {
-        this.articleService.articles = articles;
         this.isLoading = false;
       },
       error: (err) => {
@@ -40,11 +40,7 @@ export class StockComponent implements OnInit {
     this.articleService.remove(new Set(this.selectedArticles)).subscribe({
       next: () => {
         console.log('remove done.');
-        this.articleService.refresh().subscribe({
-          next: (articles) => {
-            this.articleService.articles = articles;
-          },
-        });
+        this.articleService.refresh().subscribe();
       },
     });
     this.selectedArticles.clear();
