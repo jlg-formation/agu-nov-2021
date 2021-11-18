@@ -10,6 +10,9 @@ export class ArticleService {
 
   constructor() {
     this.articles$.subscribe((articles) => {
+      if (!articles) {
+        return;
+      }
       localStorage.setItem('articles', JSON.stringify(articles));
     });
   }
@@ -29,7 +32,13 @@ export class ArticleService {
     if (!str) {
       return [];
     }
-    return JSON.parse(str) as Article[];
+    console.log('strxxx: ', str);
+    try {
+      const articles = JSON.parse(str);
+      return articles as Article[];
+    } catch (err) {
+      return [];
+    }
   }
 
   remove(selectedArticles: Set<Article>): Observable<void> {
