@@ -32,7 +32,6 @@ export class ArticleService {
     if (!str) {
       return [];
     }
-    console.log('strxxx: ', str);
     try {
       const articles = JSON.parse(str);
       return articles as Article[];

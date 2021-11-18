@@ -1,6 +1,6 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 import { throwError } from 'rxjs';
-import { a1 } from 'src/test/a1';
+import { a1 } from 'src/test/article';
 import { ArticleService } from './../../services/article.service';
 import { StockComponent } from './stock.component';
 
