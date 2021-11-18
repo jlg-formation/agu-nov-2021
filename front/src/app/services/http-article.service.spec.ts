@@ -1,11 +1,10 @@
-import { TestBed, fakeAsync, tick } from '@angular/core/testing';
 import {
   HttpClientTestingModule,
   HttpTestingController,
 } from '@angular/common/http/testing';
-
-import { HttpArticleService } from './http-article.service';
+import { TestBed } from '@angular/core/testing';
 import { a1 } from 'src/test/article';
+import { HttpArticleService } from './http-article.service';
 
 const url = 'http://localhost:3000/api/articles';
 
