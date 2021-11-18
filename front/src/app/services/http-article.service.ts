@@ -5,6 +5,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { delay, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+const url = 'http://localhost:3000/api/articles';
+
 @Injectable({
   providedIn: 'root',
 })
@@ -15,24 +17,21 @@ export class HttpArticleService extends ArticleService {
   }
 
   override refresh(): Observable<Article[]> {
-    return this.http.get<Article[]>('http://localhost:3000/api/articles').pipe(
-      delay(2000),
-      tap((articles) => this.articles$.next(articles))
-    );
+    return this.http
+      .get<Article[]>(url)
+      .pipe(tap((articles) => this.articles$.next(articles)));
   }
 
   override add(article: Article) {
     super.add(article);
-    return this.http
-      .post<void>('http://localhost:3000/api/articles', article)
-      .pipe(delay(2000));
+    return this.http.post<void>(url, article).pipe(delay(2000));
   }
 
   override remove(selectedArticles: Set<Article>): Observable<void> {
     super.remove(selectedArticles);
     const ids = [...selectedArticles].map((a) => a.id);
     return this.http
-      .delete<void>('http://localhost:3000/api/articles', {
+      .delete<void>(url, {
         headers: new HttpHeaders({
           'Content-Type': 'application/json',
         }),
