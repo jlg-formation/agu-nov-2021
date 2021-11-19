@@ -1,4 +1,12 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import {
+  Component,
+  ElementRef,
+  EventEmitter,
+  Input,
+  OnChanges,
+  Output,
+  SimpleChanges,
+} from '@angular/core';
 import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { BehaviorSubject, distinctUntilChanged } from 'rxjs';
 
@@ -7,10 +15,12 @@ import { BehaviorSubject, distinctUntilChanged } from 'rxjs';
   templateUrl: './password.component.html',
   styleUrls: ['./password.component.scss'],
 })
-export class PasswordComponent implements OnInit {
+export class PasswordComponent implements OnChanges {
+  @Input() color: string | null = 'inherit';
+  icon = faEyeSlash;
   showPassword$ = new BehaviorSubject<boolean>(false);
 
-  icon = faEyeSlash;
+  @Output() passwordEvent = new EventEmitter<'crypted' | 'clear'>();
 
   constructor(private elt: ElementRef<HTMLElement>) {
     this.showPassword$
@@ -22,15 +32,28 @@ export class PasswordComponent implements OnInit {
           return;
         }
         input.type = showPassword ? 'text' : 'password';
+
+        const str = showPassword ? 'clear' : 'crypted';
+        this.passwordEvent.emit(str);
       });
   }
 
-  ngOnInit(): void {}
+  deselect() {
+    this.showPassword$.next(false);
+  }
+
+  ngOnChanges(changes: SimpleChanges): void {
+    console.log('changes: ', changes);
+    console.log('this.color: ', this.color);
+    const input = this.elt.nativeElement.querySelector('input');
+    console.log('input: ', input);
+    if (!input) {
+      return;
+    }
+    input.style.borderColor = this.color as string;
+  }
 
   select() {
     this.showPassword$.next(true);
-  }
-  deselect() {
-    this.showPassword$.next(false);
   }
 }

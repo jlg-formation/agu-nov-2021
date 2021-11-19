@@ -7,11 +7,15 @@
     </label>
     <label>
       <div>Mot de passe</div>
-      <app-password>
+      <app-password
+        [color]="color$ | async"
+        (passwordEvent)="updateMessage($event)"
+      >
         <input type="password" formControlName="password" />
       </app-password>
     </label>
     <button class="primary" [disabled]="f.invalid">Se connecter</button>
   </form>
   <!-- {{ f.value | json }} -->
+  {{ message }}
 </main>
