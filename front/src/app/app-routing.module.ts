@@ -1,3 +1,4 @@
+import { UserGuard } from './guards/user.guard';
 import { NotFoundComponent } from './routes/not-found/not-found.component';
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
@@ -11,8 +12,13 @@ const routes: Routes = [
     path: 'stock',
     loadChildren: () =>
       import('./routes/stock/stock.module').then((m) => m.StockModule),
+    canActivate: [UserGuard],
   },
-  { path: 'user', loadChildren: () => import('./routes/user/user.module').then(m => m.UserModule) },
+  {
+    path: 'user',
+    loadChildren: () =>
+      import('./routes/user/user.module').then((m) => m.UserModule),
+  },
   { path: '**', component: NotFoundComponent },
 ];
 

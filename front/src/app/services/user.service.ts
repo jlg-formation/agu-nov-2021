@@ -9,7 +9,13 @@ export class UserService {
   afterLoginRoute = '/';
   user$ = new BehaviorSubject<User | undefined>(undefined);
 
-  constructor() {}
+  constructor() {
+    this.user$.subscribe((user) => {
+      if (!user) {
+        this.afterLoginRoute = '/';
+      }
+    });
+  }
 
   disconnect() {
     this.user$.next(undefined);

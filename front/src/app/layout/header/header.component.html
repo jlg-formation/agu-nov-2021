@@ -12,7 +12,7 @@
   </button>
   <ng-template #connected>
     <a routerLink="/user" *ngIf="userService.user$ | async">
-      {{ (userService.user$ | async)?.login }}
+      Bonjour {{ (userService.user$ | async)?.login | titlecase }}
     </a>
   </ng-template>
 </header>
