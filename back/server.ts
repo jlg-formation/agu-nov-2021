@@ -2,6 +2,7 @@ import { Article } from "./../front/src/app/interfaces/article";
 import express from "express";
 import serveIndex from "serve-index";
 import cors from "cors";
+import morgan from "morgan";
 
 const app = express();
 const port = 3000;
@@ -15,13 +16,9 @@ let articles: Article[] = [
   { id: "a3", name: "Pelle", price: 8.54, qty: 5 },
 ];
 
+app.use(morgan("tiny"));
 app.use(cors());
 app.use(express.json());
-
-app.use((req, res, next) => {
-  console.log("req: ", req.url);
-  next();
-});
 
 app.use("/api/date", (req, res) => {
   res.json({ date: new Date() });

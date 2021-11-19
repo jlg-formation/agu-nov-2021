@@ -6,7 +6,7 @@ import { TestBed } from '@angular/core/testing';
 import { a1 } from 'src/test/article';
 import { HttpArticleService } from './http-article.service';
 
-const url = 'http://localhost:3000/api/articles';
+const url = '/api/articles';
 
 describe('HttpArticleService', () => {
   let service: HttpArticleService;
