@@ -1,3 +1,4 @@
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { HttpArticleService } from './services/http-article.service';
 import { ArticleService } from './services/article.service';
 import { registerLocaleData } from '@angular/common';
@@ -10,12 +11,24 @@ import { LayoutModule } from './layout/layout.module';
 import { HomeComponent } from './routes/home/home.component';
 import { LegalComponent } from './routes/legal/legal.component';
 import { HttpClientModule } from '@angular/common/http';
+import { NotFoundComponent } from './routes/not-found/not-found.component';
 
 registerLocaleData(localeFr, 'fr');
 
 @NgModule({
-  declarations: [AppComponent, HomeComponent, LegalComponent],
-  imports: [BrowserModule, AppRoutingModule, LayoutModule, HttpClientModule],
+  declarations: [
+    AppComponent,
+    HomeComponent,
+    LegalComponent,
+    NotFoundComponent,
+  ],
+  imports: [
+    BrowserModule,
+    AppRoutingModule,
+    LayoutModule,
+    HttpClientModule,
+    FontAwesomeModule,
+  ],
   providers: [
     { provide: LOCALE_ID, useValue: 'fr' },
     { provide: DEFAULT_CURRENCY_CODE, useValue: 'EUR' },
