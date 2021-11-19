@@ -1,8 +1,9 @@
-import { Article } from "./../front/src/app/interfaces/article";
+import { Article } from "../../front/src/app/interfaces/article";
 import express from "express";
 import serveIndex from "serve-index";
 import cors from "cors";
 import morgan from "morgan";
+import path from "path";
 
 const app = express();
 const port = 3000;
@@ -47,6 +48,10 @@ app.use(
     icons: true,
   })
 );
+
+app.get("/*", (req, res) => {
+  res.sendFile(path.resolve(publicDir, "index.html"));
+});
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`);
