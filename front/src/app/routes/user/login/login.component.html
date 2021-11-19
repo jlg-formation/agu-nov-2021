@@ -7,7 +7,9 @@
     </label>
     <label>
       <div>Mot de passe</div>
-      <input type="password" formControlName="password" />
+      <app-password>
+        <input type="password" formControlName="password" />
+      </app-password>
     </label>
     <button class="primary" [disabled]="f.invalid">Se connecter</button>
   </form>
