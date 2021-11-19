@@ -1,3 +1,4 @@
+import { UserService } from './../../../services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
 
@@ -12,11 +13,21 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor() {}
+  constructor(private userService: UserService) {}
 
   ngOnInit(): void {}
 
   submit() {
     console.log('submit');
+    this.userService
+      .login(this.f.value.login, this.f.value.password)
+      .subscribe({
+        next: (user) => {
+          console.log('user: ', user);
+        },
+        error: (err) => {
+          console.log('err: ', err);
+        },
+      });
   }
 }

@@ -3,5 +3,15 @@
     <img src="assets/logo.svg" alt="Logo Gestion Stock" />
     <span>Gestion Stock</span>
   </a>
-  <button routerLink="/user/login">Se connecter</button>
+  <button
+    routerLink="/user/login"
+    *ngIf="!(userService.user$ | async); else connected"
+  >
+    Se connecter
+  </button>
+  <ng-template #connected>
+    <a routerLink="/user" *ngIf="userService.user$ | async">
+      {{ (userService.user$ | async)?.login }}
+    </a>
+  </ng-template>
 </header>
