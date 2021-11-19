@@ -14,8 +14,11 @@ describe('Gestion Client Home page', () => {
       .type('Test ' + id)
       .tab();
     cy.focused().type('1.47').tab();
+    const getArticleAlias = 'getArticles';
+    cy.intercept('GET', '/api/articles').as(getArticleAlias);
     cy.focused().type('89{enter}');
-    // cy.get('table').contains(id).click();
-    // cy.get('button[aria-label="Supprimer"]').click();
+    cy.wait('@' + getArticleAlias);
+    cy.get('table').contains(id).click();
+    cy.get('button[aria-label="Supprimer"]').click();
   });
 });
