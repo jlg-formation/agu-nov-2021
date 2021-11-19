@@ -6,7 +6,7 @@ import morgan from "morgan";
 import path from "path";
 
 const app = express();
-const port = 3000;
+const port = +(process.env.GESTION_STOCK_PORT || 3000);
 const publicDir = "../front/dist/front";
 
 const generateId = () => Date.now() + "_" + Math.floor(Math.random() * 1e6);
