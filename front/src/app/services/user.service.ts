@@ -6,9 +6,15 @@ import { User } from '../interfaces/user';
   providedIn: 'root',
 })
 export class UserService {
+  afterLoginRoute = '/';
   user$ = new BehaviorSubject<User | undefined>(undefined);
 
   constructor() {}
+
+  disconnect() {
+    this.user$.next(undefined);
+    return of(undefined);
+  }
 
   login(login: string, password: string): Observable<User> {
     password;

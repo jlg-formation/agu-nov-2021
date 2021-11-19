@@ -1,1 +1,5 @@
-<p>user works!</p>
+<main>
+  <h1>Information utilisateur</h1>
+  <h2>Login: {{ (userService.user$ | async)?.login }}</h2>
+  <button class="primary" (click)="disconnect()">Se déconnecter</button>
+</main>

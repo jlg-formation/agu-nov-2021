@@ -1,3 +1,4 @@
+import { Router } from '@angular/router';
 import { UserService } from './../../../services/user.service';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Component, OnInit } from '@angular/core';
@@ -13,7 +14,7 @@ export class LoginComponent implements OnInit {
     password: new FormControl('', [Validators.required]),
   });
 
-  constructor(private userService: UserService) {}
+  constructor(private userService: UserService, private router: Router) {}
 
   ngOnInit(): void {}
 
@@ -24,6 +25,7 @@ export class LoginComponent implements OnInit {
       .subscribe({
         next: (user) => {
           console.log('user: ', user);
+          this.router.navigateByUrl(this.userService.afterLoginRoute);
         },
         error: (err) => {
           console.log('err: ', err);

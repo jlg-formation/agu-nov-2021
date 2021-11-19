@@ -5,6 +5,7 @@
   </a>
   <button
     routerLink="/user/login"
+    [hidden]="router.url === '/user/login'"
     *ngIf="!(userService.user$ | async); else connected"
   >
     Se connecter
