@@ -1,14 +1,15 @@
 <main>
   <h1>Se connecter</h1>
-  <form>
+  <form [formGroup]="f" (ngSubmit)="submit()">
     <label>
       <div>Identifiant</div>
-      <input type="text" />
+      <input type="text" formControlName="login" />
     </label>
     <label>
       <div>Mot de passe</div>
-      <input type="password" />
+      <input type="password" formControlName="password" />
     </label>
-    <button class="primary">Se connecter</button>
+    <button class="primary" [disabled]="f.invalid">Se connecter</button>
   </form>
+  <!-- {{ f.value | json }} -->
 </main>
